@@ -1,8 +1,14 @@
+global:
+  resolve_timeout: 5m
+
 route:
-    receiver: 'alertmanager-bot'
+  group_by: ['alertname', 'severity']
+  repeat_interval: 1h
+  receiver: 'telegram'
 
 receivers:
-- name: 'alertmanager-bot'
-  webhook_configs:
-  - send_resolved: true
-    url: 'http://alertmanager-bot:8080'
+  - name: 'telegram'
+    telegram_configs:
+      - chat_id: 197791750
+        parse_mode: 'Markdown'
+        bot_token: '6145485605:AAGGrBOmanXJxKEPTSgzLCeh9ERZfeCc3Ms'

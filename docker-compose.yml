@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v2.43.0
     volumes:
       - ./prometheus:/etc/prometheus/
     container_name: prometheus
@@ -19,7 +19,7 @@ services:
       - default
 
   node-exporter:
-    image: prom/node-exporter
+    image: prom/node-exporter:v1.5.0
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -40,7 +40,7 @@ services:
       - default
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     user: root
     depends_on:
       - prometheus
@@ -57,33 +57,11 @@ services:
     networks:
       - default
 
-  alertmanager-bot:
-    command:
-      - --alertmanager.url=http://alertmanager:9093
-      - --log.level=info
-      - --store=bolt
-      - --bolt.path=/data/bot.db
-      - --telegram.admin=197791750
-      - --telegram.token=6188600803:AAEbrkB7QDdHK4pqiZuhWjaOr8MQQmcl-xM
-    image: metalmatze/alertmanager-bot:0.4.3
-    user: root
-    ports:
-      - 8080:8080
-    container_name: alertmanager-bot
-    hostname: alertmanager-bot
-    environment:
-      TZ: "Europe/Moscow"
-    restart: unless-stopped
-    volumes:
-      - ./data:/data
-    networks:
-      - default
-
   alertmanager:
-    image: prom/alertmanager:v0.21.0
+    image: prom/alertmanager:v0.25.0
     user: root
     ports:
-      - 127.0.0.1:9093:9093
+      - 9093:9093
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     container_name: alertmanager
