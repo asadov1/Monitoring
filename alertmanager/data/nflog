@@ -2,4 +2,7 @@ L
 =
 {}:{}
 alertmanager-botwebhook*Äÿ¡ŸÙÖ:
-õ¼ÔÍÛà˜±Ä¿™¢ŸÙÖ
+õ¼ÔÍÛà˜±Ä¿™¢ŸÙÖ~
+n
+={}:{alertname="PrometheusTargetMissing", severity="critical"}
+telegramtelegram*À–¢¯åœµ2	åÇ¼— ÆÏİ$àÇ–¢¯åœµ

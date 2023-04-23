@@ -1,7 +1,6 @@
 version: '3.9'
 
 services:
-
   prometheus:
     image: prom/prometheus:v2.43.0
     volumes:
@@ -16,7 +15,49 @@ services:
     environment:
       TZ: "Europe/Moscow"
     networks:
-      - default
+      monitoring_network:
+        aliases:
+          - prometheus
+
+  grafana:
+    image: grafana/grafana:latest
+    user: root
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    container_name: grafana
+    hostname: grafana
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    networks:
+      monitoring_network:
+        aliases:
+          - grafana
+
+  alertmanager:
+    image: prom/alertmanager:v0.25.0
+    user: root
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    container_name: alertmanager
+    hostname: alertmanager
+    environment:
+      TZ: "Europe/Moscow"
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/etc/alertmanager/data'
+    networks:
+      monitoring_network:
+        aliases:
+          - alertmanager
 
   node-exporter:
     image: prom/node-exporter:v1.5.0
@@ -37,47 +78,23 @@ services:
     environment:
       TZ: "Europe/Moscow"
     networks:
-      - default
+      monitoring_network:
+        aliases:
+          - node-exporter
 
-  grafana:
-    image: grafana/grafana:latest
-    user: root
-    depends_on:
-      - prometheus
+  blackbox_exporter:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox_exporter
     ports:
-      - 3000:3000
-    volumes:
-      - ./grafana:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
-    container_name: grafana
-    hostname: grafana
-    restart: unless-stopped
-    environment:
-      TZ: "Europe/Moscow"
+      - 9115:9115
     networks:
-      - default
-
-  alertmanager:
-    image: prom/alertmanager:v0.25.0
-    user: root
-    ports:
-      - 9093:9093
+      monitoring_network:
+        aliases:
+          - blackbox_exporter
     volumes:
-      - ./alertmanager/:/etc/alertmanager/
-    container_name: alertmanager
-    hostname: alertmanager
-    environment:
-      TZ: "Europe/Moscow"
-    restart: unless-stopped
-    command:
-      - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/etc/alertmanager/data'
-    networks:
-      - default
+      - ./blackbox.yml:/etc/blackbox_exporter/config.yml
 
 networks:
-  default:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.28.0.0/16
+  monitoring_network:
+    external: true
+
