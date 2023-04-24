@@ -55,9 +55,33 @@ services:
     networks:
       - monitoring_network
 
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    command:
+      - "-nginx.scrape-uri=http://wordpress-docker-nginx-1:80/stub_status"
+    ports:
+      - "9113:9113"
+    depends_on:
+      - nginx
+    networks:
+      - monitoring_network
+
+  mysql-exporter:
+    image: prom/mysqld-exporter:latest
+    environment:
+      DATA_SOURCE_NAME: user:password@(db:3306)/
+    ports:
+      - "9104:9104"
+    restart: always
+    networks:
+      - monitoring_network
+    depends_on:
+      - db
+
 volumes:
   db_data: {}
 
 networks:
   monitoring_network:
     external: true
+
