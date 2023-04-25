@@ -1,5 +1,21 @@
-
-o
-={}:{alertname="PrometheusTargetMissing", severity="critical"}
-telegramtelegram*Ôô™¢ıˆÆ¤2
-”…ÌÖ¤ö§›ô¬š¢ıˆÆ¤
+x
+h
+7{}:{alertname="MysqlExporterDown", severity="Critical"}
+telegramtelegram*ÈšŸ¢½óáì:	‹öÍÎ‰‘¾.èÒŸ¢½óáìy
+i
+7{}:{alertname="MySQLInstanceDown", severity="critical"}
+telegramtelegram*œ˜Ÿ¢ıÓÂÈ:
+­ŠëçŒøÁ»¼ĞŸ¢ıÓÂÈx
+h
+7{}:{alertname="NginxInstanceDown", severity="critical"}
+telegramtelegram*œ˜Ÿ¢‰íµ:	ÏóÜ‡ê©£}¼ĞŸ¢‰íµx
+h
+7{}:{alertname="NginxInstanceDown", severity="Critical"}
+telegramtelegram*ü›Ÿ¢íóÅÄ:	àš¦Š¸öâMœÔŸ¢íóÅÄx
+h
+7{}:{alertname="MySQLInstanceDown", severity="Critical"}
+telegramtelegram*ü›Ÿ¢„±ãØ:	ê¼£†ŞÊáFœÔŸ¢„±ãØy
+i
+7{}:{alertname="NginxExporterDown", severity="Critical"}
+telegramtelegram*ÈšŸ¢Ø™¸×:
+ıœÅ§¥‘À¡èÒŸ¢Ø™¸×

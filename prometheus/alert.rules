@@ -1,12 +1,84 @@
-groups: 
-- name: test
+groups:
+- name: critical_alerts
   rules:
-  - alert: PrometheusTargetMissing
-    expr: up == 0
-    for: 0m
+  - alert: InstanceDown
+    expr: up{job="node"} == 0
+    for: 1m
     labels:
-      severity: critical
+      severity: Critical
     annotations:
-      summary: "Prometheus target missing (instance {{ $labels.instance }})"
-      description: "A Prometheus target has disappeared. An exporter might be crashed. VALUE = {{ $value }}  LABELS: {{ $labels }}"
+      description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+      summary: 'Instance {{ $labels.instance }} down'
+
+  - alert: BlackboxExporterDown
+    expr: up{job="blackbox"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      description: 'Blackbox exporter {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+      summary: 'Blackbox exporter {{ $labels.instance }} down'
+
+  - alert: NginxExporterDown
+    expr: up{job="nginx"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      description: 'Nginx exporter {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+      summary: 'Nginx exporter {{ $labels.instance }} down'
+
+  - alert: MysqlExporterDown
+    expr: up{job="mysql"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      description: 'MySQL exporter {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+      summary: 'MySQL exporter {{ $labels.instance }} down'
+
+  - alert: CadvisorDown
+    expr: up{job="cadvisor"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      description: 'cAdvisor {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+      summary: 'cAdvisor {{ $labels.instance }} down'
+
+  - alert: WordPressInstanceDown
+    expr: probe_success{job="blackbox", instance="http://192.168.254.253:80"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      description: "The WordPress instance at {{ $labels.instance }} is not responding for more than 1 minutes."
+      summary: "WordPress instance is down"
+
+  - alert: MySQLInstanceDown
+    expr: up{job="mysql"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      summary: "MySQL instance is down"
+      description: "The MySQL instance at {{ $labels.instance }} is not responding for more than 1 minutes."
+
+  - alert: NginxInstanceDown
+    expr: up{job="nginx"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      summary: "Nginx instance is down"
+      description: "The Nginx instance at {{ $labels.instance }} is not responding for more than 1 minutes."
+
+  - alert: PhpMyAdminInstanceDown
+    expr: probe_success{job="blackbox", instance="http://phpmyadmin:8080"} == 0
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      summary: "phpMyAdmin instance is down"
+      description: "The phpMyAdmin instance at {{ $labels.instance }} is not responding for more than 1 minutes."
 
