@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   prometheus:
-    image: prom/prometheus:v2.43.0
+    image: prom/prometheus:latest
     volumes:
       - ./prometheus:/etc/prometheus/
     container_name: prometheus
@@ -42,7 +42,7 @@ services:
           - grafana
 
   alertmanager:
-    image: prom/alertmanager:v0.25.0
+    image: prom/alertmanager:latest
     user: root
     ports:
       - 9093:9093
@@ -62,7 +62,7 @@ services:
           - alertmanager
 
   node-exporter:
-    image: prom/node-exporter:v1.5.0
+    image: prom/node-exporter:latest
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
