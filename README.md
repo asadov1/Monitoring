@@ -37,9 +37,6 @@
 
 **Выполненые действия:**
 
-- Для подключения к Grafana перейти по адресу [Grafana](http://62.173.152.239:3000 "Grafana"). Учетные данные - admin / ^NlxbAtM3LQ5
-
-- Созданы папки infra и app
 
 - В паппку infra добавлен дашборды для мониториншга Docker контейнеров [Docker]( http://62.173.152.239:3000/d/4dMaCsRZz/docker-container-and-host-metrics?orgId=1&refresh=10s "Grafana Docker Dashboard") и самой ОС через node exporter [Node exporter](http://62.173.152.239:3000/d/rYdddlPWk/node-exporter-full?orgId=1 "Node exporter dashboard")
 
