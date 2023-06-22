@@ -1,14 +1,0 @@
-x
-h
-7{}:{alertname="MySQLInstanceDown", severity="Critical"}
-telegramtelegram*Ì·Ì¤²çâ:	ê¼£†ŞÊáFìïÌ¤²çâx
-h
-7{}:{alertname="NginxInstanceDown", severity="Critical"}
-telegramtelegram*Ì·Ì¤ğ¸óê:	àš¦Š¸öâMìïÌ¤ğ¸óêx
-h
-7{}:{alertname="MysqlExporterDown", severity="Critical"}
-telegramtelegram*Ì·Ì¤†ğ½ü:	‹öÍÎ‰‘¾.ìïÌ¤†ğ½üy
-i
-7{}:{alertname="NginxExporterDown", severity="Critical"}
-telegramtelegram*Ì·Ì¤È‹™Í:
-ıœÅ§¥‘À¡ìïÌ¤È‹™Í
