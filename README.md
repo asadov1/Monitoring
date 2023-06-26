@@ -88,9 +88,9 @@
 
   
 
-  **Конфигурация logstash**
+  **Конфигурация logstash:**
 
-  ```Конфигурация logstash:
+  ```Конфигурация logstash
   [root@localhost prometheus_stack]# cat /opt/prometheus_stack/docker-elk/logstash/config/logstash.yml 
   ---
   ## Default Logstash configuration from Logstash base image.
@@ -123,9 +123,9 @@
   }
   ```
 
-  **Конфигурация rsyslog**
+  **Конфигурация rsyslog:**
 
-  ```Конфигурация rsyslog:
+  ```Конфигурация rsyslog
   [root@localhost prometheus_stack]# cat /etc/rsyslog.conf 
   # rsyslog configuration file
   
