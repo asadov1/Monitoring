@@ -17,6 +17,13 @@ heartbeat.monitors:
   hosts:
     - elasticsearch
 
+- type: http
+  schedule: '@every 5s'
+  urls: ["http://otus.ru", "http://google.com"]
+
+# output.logstash:
+#   hosts: ["logstash:5044"]
+
 processors:
 - add_cloud_metadata: ~
 

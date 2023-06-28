@@ -35,6 +35,12 @@ metricbeat.modules:
   xpack.enabled: true
   period: 10s
   enabled: true
+- module: system
+  period: 10s
+  metricsets:
+    - cpu
+    - memory
+  enabled: true    
 - module: docker
   metricsets:
     - container
@@ -63,6 +69,9 @@ output.elasticsearch:
   username: metricbeat_internal
   password: ${METRICBEAT_INTERNAL_PASSWORD}
 
+setup.kibana:
+  host: "kibana:5601"
+
 ## HTTP endpoint for health checking
 ## https://www.elastic.co/guide/en/beats/metricbeat/current/http-endpoint.html
 #
@@ -70,3 +79,4 @@ output.elasticsearch:
 http:
   enabled: true
   host: 0.0.0.0
+

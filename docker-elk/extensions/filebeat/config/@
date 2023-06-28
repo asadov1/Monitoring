@@ -16,9 +16,6 @@ filebeat.autodiscover:
     - type: docker
       hints.enabled: true
 
-setup.kibana:
-  host: "http://kibana:5601"        
-
 processors:
   - add_cloud_metadata: ~
 
@@ -28,36 +25,34 @@ monitoring:
     username: beats_system
     password: ${BEATS_SYSTEM_PASSWORD}
 
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/auth.log*
+    - /var/log/secure*
+  document_type: syslog
+
+filebeat.modules:
+- module: system
+  # Syslog
+  syslog:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths: ["/var/log/auth.log*"]
+  
+  # Authorization logs
+  auth:
+    enabled: true
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths: ["/var/log/secure*"]
+
 output.elasticsearch:
   hosts: [ http://elasticsearch:9200 ]
   username: filebeat_internal
   password: ${FILEBEAT_INTERNAL_PASSWORD}
-
-filebeat.inputs:
- - type: log
-   enabled: true
-   paths:
-     - /var/log/secure*
-   document_type: syslog
-   ignore_older: 24h
-   close_inactive: 1h
-   clean_inactive: 48h
-
-filebeat.modules:
- - module: system
-   # Syslog
-   syslog:
-     enabled: true
-     # Set custom paths for the log files. If left empty,
-     # Filebeat will choose the paths depending on your OS.
-     var.paths: ["/var/log/auth.log*"]
-  
-   # Authorization logs
-   auth:
-     enabled: true
-     # Set custom paths for the log files. If left empty,
-     # Filebeat will choose the paths depending on your OS.
-     var.paths: ["/var/log/secure*"]
 
 ## HTTP endpoint for health checking
 ## https://www.elastic.co/guide/en/beats/filebeat/current/http-endpoint.html
@@ -66,4 +61,3 @@ filebeat.modules:
 http:
   enabled: true
   host: 0.0.0.0
-
