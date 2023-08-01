@@ -3,10 +3,10 @@
 **Цели:**
 
 - Установить и настроить Prometheus.
-- Результатом выполнения данного дз будет являться публичный репозиторий в системе контроля версий (Github, Gitlab, etc.) в котором будет находится Readme с описание выполненых действий.
+- Результатом выполнения данного ДЗ будет являться публичный репозиторий в системе контроля версий (Github, Gitlab, etc.) в котором будет находиться Readme с описанием выполненных действий.
 - Файлы конфигурации prometheus и alertmanager должны находится в директории GAP-1.
 
-**Выполненые действия:**
+**Выполненные действия:**
 
 - Настроен стек GAP.
 
@@ -16,14 +16,13 @@
 
 - Настроены экспортеры для всего, что можно, как и написано в задании.
 
-- Файл docker-compose.yml в корневой папке содержит все приложения GAP и некоторые экпортеры (blackbox_exporter, node-exporter, также для мониторинга
-  Docker разевернул приложения cadvisor и redis).
+- Файл docker-compose.yml в корневой папке содержит все приложения GAP и некоторые экспортеры (blackbox_exporter, node-exporter, также для мониторинга Docker развернул приложения cadvisor и redis).
+  
+- В alertmanager файл alert.rules настроил алерты с проверкой доступности сервисов - severity: critical.
 
-- В alertmanager файл alert.rules настроил алерты с провекой доступности сервисов - severity: critical.
+- В wordpress-docker еще один docker-compose.yml в котором настроены приложения cms, nginx, phpmyadmin, mysql и экспортеры связанные с этим.
 
-- В wordpress-docker еще один docker-compose.yml в котором настроены приложения cms, nginx, phpmyadmin, mysql и экспортеры связаные с этим.
-
-- Также настроил мониторинг всех сервисов, ОС и Docker  в дашбордах Grafana, но об этом видимо в слещующий раз.
+- Также настроил мониторинг всех сервисов, ОС и Docker в дашбордах Grafana, но об этом видимо в следующий раз.
 
 
 
@@ -35,10 +34,10 @@
 
 
 
-**Выполненые действия:**
+**Выполненные действия:**
 
 
-- В паппку infra добавлен дашборды для мониториншга Docker контейнеров [Docker]( http://62.173.152.239:3000/d/4dMaCsRZz/docker-container-and-host-metrics?orgId=1&refresh=10s "Grafana Docker Dashboard") и самой ОС через node exporter [Node exporter](http://62.173.152.239:3000/d/rYdddlPWk/node-exporter-full?orgId=1 "Node exporter dashboard")
+- В папку infra добавлен дашборды для мониторинга Docker контейнеров [Docker]( http://62.173.152.239:3000/d/4dMaCsRZz/docker-container-and-host-metrics?orgId=1&refresh=10s "Grafana Docker Dashboard") и самой ОС через node exporter [Node exporter](http://62.173.152.239:3000/d/rYdddlPWk/node-exporter-full?orgId=1 "Node exporter dashboard")
 
 - В папку app добавлены аборты для мониторинга [MySQL](http://62.173.152.239:3000/d/MQWgroiiz/mysql-overview?orgId=1&refresh=1m "Grafana MySQL dashboard"), [Nginx](http://62.173.152.239:3000/d/MQWgroiiz/mysql-overview?orgId=1&refresh=1m "Grafana Nginx dashboard") и [BlackBox Exprter](http://62.173.152.239:3000/d/xtkCtBkiz/prometheus-blackbox-exporter?orgId=1&refresh=10s "Grafana CMS dashboard") для мониторинга доступности CMS WordPress.
 
@@ -54,20 +53,20 @@
 
   
 
-**Выполненые действия:**
+**Выполненные действия:**
 
 
-- Установлен ELK стек в Doker
+- Установлен ELK стек в Docker
 
 - Настроен rsyslog и logstash
 
 - Добавлен index ***sshd-logs-**
 
-- Сделал визуализации sshd в кибана
+- Сделал визуализации sshd в Kibana
 
   
 
-**Созданые индексы elasticsearch:**
+**Созданные индексы elasticsearch:**
 
 ```Созданые индексы elasticsearch
 [root@localhost prometheus_stack]# curl -u elastic:changeme -X GET "localhost:9200/_cat/indices?v=true"
@@ -232,15 +231,15 @@ local7.*                                                /var/log/boot.log
 
 - Установить beats
 
-**Выполненые действия:**
+**Выполненные действия:**
 
 - Установлены heartbeat, metricbeat и filebeat
 - Добавлены dashboards в Kibana для каждого из установленных битов
 - Добавлены индексы
-- Посмотрел визуализации для Docker, check status итд
+- Разобрал визуализации для Docker, check status итд
 - Для каждого из битов создал пользователя для подключения к elastic
 
-**Созданые индексы elasticsearch:**
+**Созданные индексы elasticsearch:**
 
 ```
 [root@localhost docker-elk]# curl -u elastic:ciscocisco -X GET "localhost:9200/_cat/indices?v=true"
