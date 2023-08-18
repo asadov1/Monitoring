@@ -1,22 +1,0 @@
-v
-g
-7{}:{alertname="MysqlExporterDown", severity="Critical"}
-telegramtelegram*Ì¢¦Â¨Ï2	‹öÍÎ‰‘¾.®„£¦Â¨Ï|
-l
-:{}:{alertname="BlackboxExporterDown", severity="Critical"}
-telegramtelegram*Ì¢¦å ¹£2
-ê–¯í¼ÌËª­­„£¦å ¹£y
-i
-7{}:{alertname="NginxExporterDown", severity="Critical"}
-telegramtelegram*Ì¢¦ê²¼‡2
-ıœÅ§¥‘À¡­„£¦ê²¼‡x
-h
-7{}:{alertname="NginxInstanceDown", severity="Critical"}
-telegramtelegram*Ì¢¦ˆ¥˜Ç2	àš¦Š¸öâM­„£¦ˆ¥˜Çv
-g
-7{}:{alertname="MySQLInstanceDown", severity="Critical"}
-telegramtelegram*Ì¢¦ÆĞ€2	ê¼£†ŞÊáF®„£¦ÆĞ€t
-d
-2{}:{alertname="CadvisorDown", severity="Critical"}
-telegramtelegram*Ì¢¦îê–¶2
-±¢Ô…çòş­„£¦îê–¶
